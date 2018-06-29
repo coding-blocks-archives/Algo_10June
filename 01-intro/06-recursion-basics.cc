@@ -21,7 +21,17 @@ int fib(int n){
     return prevFib + superPrev;
 }
 
+int fib(int n){
+    int first = 0;
+    int second = 1;
+    int ans = n == 0 ? first : second;
 
+    for(int i = 2; i <= n; ++i){
+        ans = first + second;
+        second = first;
+        first = ans;
+    }
+}
 
 int main(){
     // int n;

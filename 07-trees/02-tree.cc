@@ -110,6 +110,9 @@ int heightWithDiameter(TreeNode* root, int& diameterComputedSoFar){
     return max(lt, rt) + 1;
 }
 
+void connectLevels(TreeNode* root){
+    
+}
 
 
 int main(){

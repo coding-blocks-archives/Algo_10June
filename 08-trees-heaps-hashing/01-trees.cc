@@ -186,17 +186,20 @@ TreeNode* arrToTree(int arr[], int be, int en) {
     return root;
 }
 
-TreeNode* findLcaBst(TreeNode* root, int a, int b){
+TreeNode* findLcaBst1(TreeNode* root, int a, int b){
     // TODO update it for both nodes to be present in the tree
     if (root == NULL) return NULL;
+    if (a > root->data and b > root->data) return findLcaBst1(root->right, a, b);
+    if (a < root->data and b < root->data) return findLcaBst1(root->left, a, b);
+    if (findInBst(root, a) && findInBst(root, b)) return root;
+    return NULL;
+}
 
-    if (root->data == a or root->data == b){
-        return root;
-    }
-
-    if (root->data < a and root->data < b) return findLcaBst(root->right, a, b);
-    if (root->data > a and root->data > b) return findLcaBst(root->left, a, b);
-    // return root;
+TreeNode* findLcaBst(TreeNode* root, int a, int b){
+    // Wrapper function
+    bool aPresence = findInBst(root, a);
+    bool bPresence = findInBst(root, b);
+    if (aPresence && bPresence) return findLcaBst1(root, a, b);
 }
 
 
